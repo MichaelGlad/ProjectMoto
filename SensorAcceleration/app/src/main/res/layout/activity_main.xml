@@ -13,14 +13,13 @@
     <Button
         android:id="@+id/btnSensAccelerate"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:text="@string/acceleration"
-        android:layout_marginStart="32dp"
-        tools:layout_constraintTop_creator="1"
-        android:layout_marginTop="32dp"
-        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintRight_toLeftOf="@+id/btnRotate"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="24dp"
+        app:layout_constraintHorizontal_chainStyle="spread" />
 
 
 
@@ -42,12 +41,13 @@
 
     <Button
         android:id="@+id/btnRotate"
-        android:layout_width="121dp"
-        android:layout_height="51dp"
+        android:layout_width="150dp"
+        android:layout_height="48dp"
         android:text="Magnetics"
-        android:layout_marginRight="32dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btnSensAccelerate" />
+        app:layout_constraintLeft_toRightOf="@+id/btnSensAccelerate"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="24dp" />
 
 
 </android.support.constraint.ConstraintLayout>

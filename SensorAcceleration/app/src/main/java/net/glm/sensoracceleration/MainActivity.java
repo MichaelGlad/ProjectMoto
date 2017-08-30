@@ -5,6 +5,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Display;
@@ -19,6 +20,8 @@ import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    static final String MAGNOMETER = "MAGNOMETER";
+    static final String ACCELEROMETER = "ACCELEROMETER";
     TextView tvSensorText;
     Button btnSensAccelerate;
     Button btnRotate;
@@ -29,6 +32,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     StringBuilder stringBuilder = new StringBuilder();
 
     Timer timer;
+
+    Boolean isAccelerometerGravityRun = false;
+    Boolean isMagneticsRun = false;
 
     int rotation;
 
@@ -78,6 +84,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         timer.cancel();
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(ACCELEROMETER,isAccelerometerGravityRun);
+        outState.putBoolean(MAGNOMETER,isMagneticsRun);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState != null){
+            isAccelerometerGravityRun = savedInstanceState.getBoolean(ACCELEROMETER);
+            isMagneticsRun = savedInstanceState.getBoolean(MAGNOMETER);
+
+            if (isAccelerometerGravityRun){
+                runAccelerator();
+            }else if (isMagneticsRun){
+                runRotate();
+            }
+
+        }
+    }
+
     void showAccelometerGravityInfo() {
         stringBuilder.setLength(0);
         stringBuilder.append("Accelerometer: " + format(valuesAccel))
@@ -91,7 +120,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     void showRotationInfo() {
         stringBuilder.setLength(0);
         stringBuilder.append("Orientation : " + format(valuesResult))
-                .append("\nOrientation 2: " + format(valuesResult2))
+                     .append("\nOrientation 2: " + format(valuesResult2))
+                     .append("\n\nAccelerometer: " + format(valuesAccel))
+                     .append("\n\nMagnometer: " + format(valuesMagnetic))
         ;
         tvSensorText.setText(stringBuilder);
     }
@@ -143,54 +174,79 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+
+
+        if (timer != null){
+            timer.cancel();
+            sensorManager.unregisterListener(sensorListener);
+        }
+
+
+
         if (v.getId() == R.id.btnSensAccelerate){
-            sensorManager.registerListener(sensorListener,sensorAcceliration,SensorManager.SENSOR_DELAY_NORMAL);
-            sensorManager.registerListener(sensorListener,sensorLinearAcceleration,SensorManager.SENSOR_DELAY_NORMAL);
-            sensorManager.registerListener(sensorListener,sensorGravity,SensorManager.SENSOR_DELAY_NORMAL);
-
-            timer = new Timer();
-            TimerTask task = new TimerTask() {
-                @Override
-                public void run() {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            showAccelometerGravityInfo();
-                        }
-                    });
-
-                }
-            };
-            timer.schedule(task,0,400);
-
+           runAccelerator();
         }
 
 
         if (v.getId() == R.id.btnRotate){
-            sensorManager.registerListener(sensorListener, sensorAcceliration, SensorManager.SENSOR_DELAY_NORMAL);
-            sensorManager.registerListener(sensorListener, sensorMagnet, SensorManager.SENSOR_DELAY_NORMAL);
-
-            timer = new Timer();
-            TimerTask task = new TimerTask() {
-                @Override
-                public void run() {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            getDeviceOrientation();
-                            getActualDeviceOrientation();
-                            showRotationInfo();
-                        }
-                    });
-                }
-            };
-            timer.schedule(task, 0, 400);
-
-            WindowManager windowManager = ((WindowManager) getSystemService(Context.WINDOW_SERVICE));
-            Display display = windowManager.getDefaultDisplay();
-            rotation = display.getRotation();
+            runRotate();
 
         }
+
+    }
+
+    void runAccelerator (){
+
+        isMagneticsRun = false;
+        isAccelerometerGravityRun = true;
+
+        sensorManager.registerListener(sensorListener,sensorAcceliration,SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(sensorListener,sensorLinearAcceleration,SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(sensorListener,sensorGravity,SensorManager.SENSOR_DELAY_NORMAL);
+
+        timer = new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        showAccelometerGravityInfo();
+                    }
+                });
+
+            }
+        };
+        timer.schedule(task,0,400);
+    }
+
+    void runRotate (){
+
+        isAccelerometerGravityRun = false;
+        isMagneticsRun = true;
+
+        sensorManager.registerListener(sensorListener, sensorAcceliration, SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(sensorListener, sensorMagnet, SensorManager.SENSOR_DELAY_NORMAL);
+
+        timer = new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getDeviceOrientation();
+                        getActualDeviceOrientation();
+                        showRotationInfo();
+                    }
+                });
+            }
+        };
+        timer.schedule(task, 0, 400);
+
+        WindowManager windowManager = ((WindowManager) getSystemService(Context.WINDOW_SERVICE));
+        Display display = windowManager.getDefaultDisplay();
+        rotation = display.getRotation();
 
     }
 
