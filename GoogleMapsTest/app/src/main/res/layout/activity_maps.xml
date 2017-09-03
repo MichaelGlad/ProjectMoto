@@ -10,13 +10,13 @@
         android:weightSum="5">
 
         <EditText
-            android:id="@+id/etLocationEntry"
+            android:id="@+id/etLocationSearch"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4" />
 
         <Button
-            android:id="@+id/btSearch"
+            android:id="@+id/btnSearch"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -34,7 +34,7 @@
         android:layout_height="match_parent"
         tools:context="net.glm.googlemapstest.MapsActivity" />
     <Button
-        android:id="@+id/btMark"
+        android:id="@+id/btnMark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -42,26 +42,26 @@
         android:text="Mark" />
 
     <Button
-        android:id="@+id/btSatellite"
+        android:id="@+id/btnSatellite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/btMark"
+        android:layout_toLeftOf="@+id/btnMark"
         android:text="Sat" />
 
     <Button
-        android:id="@+id/btClear"
+        android:id="@+id/btnClear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/btSatellite"
+        android:layout_toLeftOf="@+id/btnSatellite"
         android:text="Clear" />
 
     <ZoomControls
         android:id="@+id/zcZoom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btMark"
+        android:layout_above="@+id/btnMark"
         android:layout_alignParentRight="true" />
 
 </RelativeLayout>
