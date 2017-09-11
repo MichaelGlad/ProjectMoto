@@ -9,18 +9,18 @@ import java.util.List;
 public class User {
 
     private String fullName;
-
     private String phoneNumber;
     private String email;
     private String motorbikeKind;
-    private Boolean isBringFuel,isRepairFlatTire,isRepairChain,isRepairEngine,isRepairMoreProblems;
+    private Boolean isBringFuel,isRepairFlatTire,isRepairChain,isRepairEngine,isRepairAnotherProblems;
     private Integer id;
 
 
-    public User(String fullName, String phoneNumber, String email, String motorbikeKind,
-                Boolean isBringFuel, Boolean isRepairFlatTire, Boolean isRepairChain, Boolean isRepairEngine, Boolean isRepairMoreProblems) {
-        this.fullName = fullName;
 
+
+    public User(String fullName, String phoneNumber, String email, String motorbikeKind,
+                Boolean isBringFuel, Boolean isRepairFlatTire, Boolean isRepairChain, Boolean isRepairEngine, Boolean isRepairAnotherProblems) {
+        this.fullName = fullName;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.motorbikeKind = motorbikeKind;
@@ -28,7 +28,7 @@ public class User {
         this.isRepairFlatTire = isRepairFlatTire;
         this.isRepairChain = isRepairChain;
         this.isRepairEngine = isRepairEngine;
-        this.isRepairMoreProblems = isRepairMoreProblems;
+        this.isRepairAnotherProblems = isRepairAnotherProblems;
     }
 
     public String getfullName() {
