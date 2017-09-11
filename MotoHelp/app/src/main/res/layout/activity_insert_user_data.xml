@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="net.glm.motohelp.InsertUserDataActivity">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilFullName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
+
+        <EditText
+            android:id="@+id/etFullName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/your_name" />
+    </android.support.design.widget.TextInputLayout>
+
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilPhoneNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilFullName"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
+
+        <EditText
+            android:id="@+id/etPhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/your_phone_number"
+            android:inputType="phone"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilPhoneNumber"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/your_email"
+            android:inputType="textEmailAddress"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilMotobikeKind"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilEmail"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
+
+        <EditText
+            android:id="@+id/etMotobikeKind"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/your_motobike" />
+    </android.support.design.widget.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tvSkills"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/what_do_you_know"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintRight_toRightOf="@+id/tilMotobikeKind"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="@+id/tilMotobikeKind"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/tilMotobikeKind"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
+
+    <CheckBox android:id="@+id/checkboxFuel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bring_fuel"
+        app:layout_constraintRight_toLeftOf="@+id/checkboxFlatTire"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvSkills" />
+
+    <CheckBox android:id="@+id/checkboxFlatTire"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/repair_flat_tire"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/checkboxFuel"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvSkills" />
+
+    <CheckBox android:id="@+id/checkboxChain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/repair_chain"
+        app:layout_constraintRight_toLeftOf="@+id/checkboxEngine"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/checkboxFuel" />
+
+    <CheckBox android:id="@+id/checkboxEngine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/repair_engine"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/checkboxChain"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/checkboxFlatTire" />
+
+    <CheckBox android:id="@+id/checkboxAnother"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/repair_more_problems"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/checkboxChain" />
+
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">MotoHelp</string>
+
+
+    <string name="your_motobike">Your Motobike</string>
+    <string name="your_email">Your Email</string>
+    <string name="your_phone_number">Your Phone Number</string>
+    <string name="your_name">Your Full Name</string>
+    <string name="what_do_you_know">What do You know to do ?</string>
+    <string name="bring_fuel">Bring Fuel</string>
+    <string name="repair_flat_tire">Repair Flat tire</string>
+    <string name="repair_chain">Repair Chain</string>
+    <string name="repair_engine">Repair Engine</string>
+    <string name="repair_more_problems">Repair More problems</string>
+    <string name="more_details">More Details</string>
+    <string name="accident">Accident</string>
+
+
+</resources>
