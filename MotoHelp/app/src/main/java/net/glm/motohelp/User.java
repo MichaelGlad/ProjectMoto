@@ -12,10 +12,8 @@ public class User {
     private String phoneNumber;
     private String email;
     private String motorbikeKind;
-    private Boolean isBringFuel,isRepairFlatTire,isRepairChain,isRepairEngine,isRepairAnotherProblems;
+    private Boolean isBringFuel, isRepairFlatTire, isRepairChain, isRepairEngine, isRepairAnotherProblems;
     private Integer id;
-
-
 
 
     public User(String fullName, String phoneNumber, String email, String motorbikeKind,
@@ -29,6 +27,7 @@ public class User {
         this.isRepairChain = isRepairChain;
         this.isRepairEngine = isRepairEngine;
         this.isRepairAnotherProblems = isRepairAnotherProblems;
+
     }
 
     public String getFullName() {
@@ -63,12 +62,31 @@ public class User {
         this.motorbikeKind = motorbikeKind;
     }
 
-
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Boolean getBringFuel() {
+        return isBringFuel;
+    }
+
+    public Boolean getRepairFlatTire() {
+        return isRepairFlatTire;
+    }
+
+    public Boolean getRepairChain() {
+        return isRepairChain;
+    }
+
+    public Boolean getRepairEngine() {
+        return isRepairEngine;
+    }
+
+    public Boolean getRepairAnotherProblems() {
+        return isRepairAnotherProblems;
     }
 }

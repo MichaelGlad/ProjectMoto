@@ -19,7 +19,7 @@ public interface ViewPresentorContracts {
 
     interface MainView {
 
-        void runUserDataActivity();
+      //  void runUserDataActivity();
 
     }
 }

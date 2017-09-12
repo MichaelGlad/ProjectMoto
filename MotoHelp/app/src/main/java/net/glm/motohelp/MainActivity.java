@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import net.glm.motohelp.contracts.ViewPresentorContracts;
 import net.glm.motohelp.presenters.ManagerPresenter;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnAccidend;
     ImageButton btnFuel, btnFlatTire, btnChain, btnEngine, btnAnother;
     TextInputEditText etEventInformation;
+    TextView tvUserName;
     User ourUser;
 
     @Override
@@ -36,6 +38,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mPresenter.setMainView(this);
 
         ourUser = mPresenter.getUser();
+        if (ourUser == null){
+            Intent getUserIntent = new Intent(MainActivity.this, InsertUserDataActivity.class);
+            startActivity(getUserIntent);
+
+        }
 
         Log.d(MY_LOG,"After get User in onCreate");
         if (ourUser != null) Log.d(MY_LOG,"User Name is " + ourUser.getFullName());
@@ -47,6 +54,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnChain = (ImageButton) findViewById(R.id.btnChain);
         btnEngine = (ImageButton) findViewById(R.id.btnEngine);
         btnAnother = (ImageButton) findViewById(R.id.btnAnother);
+
+        tvUserName = (TextView) findViewById(R.id.tvUserName);
 
         etEventInformation = (TextInputEditText) findViewById(R.id.etEventInformation);
 
@@ -62,6 +71,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             ourUser = mPresenter.getUser();
         }
+        if (tvUserName != null && ourUser != null){
+            tvUserName.setText(ourUser.getFullName());
+        }
+
 
     }
 
@@ -76,10 +89,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    @Override
-    public void runUserDataActivity() {
-        Intent getUserIntent = new Intent(MainActivity.this, InsertUserDataActivity.class);
-        startActivity(getUserIntent);
 
-    }
 }
