@@ -7,8 +7,15 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+import net.glm.motohelp.contracts.ViewPresentorContracts;
+import net.glm.motohelp.presenters.ManagerPresenter;
 
 public class InsertUserDataActivity extends AppCompatActivity implements View.OnClickListener {
+
+
+    static final String MY_LOG = "My Log";
+    private ViewPresentorContracts.Presenter mPresenter;
+
 
     EditText etFullName;
     EditText etPhoneNumber;
@@ -29,6 +36,7 @@ public class InsertUserDataActivity extends AppCompatActivity implements View.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert_user_data);
+        mPresenter = ManagerPresenter.getInstance();
 
         etFullName = (EditText) findViewById(R.id.etFullName);
         etPhoneNumber = (EditText) findViewById(R.id.etPhoneNumber);
@@ -72,6 +80,7 @@ public class InsertUserDataActivity extends AppCompatActivity implements View.On
                 checkBoxEngine.isChecked(),
                 checkBoxAnother.isChecked()
         );
+        mPresenter.acceptUserData(inputUser);
         finish();
     }
 }

@@ -31,7 +31,7 @@ public class User {
         this.isRepairAnotherProblems = isRepairAnotherProblems;
     }
 
-    public String getfullName() {
+    public String getFullName() {
         return fullName;
     }
 
